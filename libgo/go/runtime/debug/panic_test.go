@@ -11,12 +11,16 @@ package debug_test
 import (
 	"runtime"
 	"runtime/debug"
+	"strings"
 	"syscall"
 	"testing"
 	"unsafe"
 )
 
 func TestPanicOnFault(t *testing.T) {
+	if strings.Contains(runtime.Version(), "llvm") {
+		t.Skip("LLVM doesn't support non-call exception")
+	}
 	if runtime.GOARCH == "s390x" {
 		t.Skip("s390x fault addresses are missing the low order bits")
 	}
