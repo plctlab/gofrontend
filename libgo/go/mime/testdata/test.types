@@ -6,4 +6,3 @@
  # mime package test
 application/test	t1	# Simple test
 text/test		t2	# Text test
-image/png      png # PNG image
